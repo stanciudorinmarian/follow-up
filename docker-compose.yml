@@ -3,10 +3,10 @@ version: "3.8"
 services:
   nginx:
     build:
-      context: ""
-      dockerfile: services/nginx/Dockerfile
+      context: .
+      dockerfile: ./infrastructure/services/nginx/Dockerfile
     env_file:
-      - infrastructure/.env
+      - .env
     networks:
       - follow-up-network
     volumes:
@@ -23,8 +23,8 @@ services:
 
   fpm:
     build:
-      context: ""
-      dockerfile: services/fpm/Dockerfile
+      context: .
+      dockerfile: ./infrastructure/services/fpm/Dockerfile
     volumes:
       - ./:/var/www/html
     networks:
@@ -34,8 +34,8 @@ services:
 
   queue:
     build:
-      context: ""
-      dockerfile: services/queue/Dockerfile
+      context: .
+      dockerfile: ./infrastructure/services/queue/Dockerfile
     networks:
       - follow-up-network
     volumes:
@@ -46,10 +46,10 @@ services:
 
   postgres:
     build:
-      context: ""
-      dockerfile: services/postgres/Dockerfile
+      context: .
+      dockerfile: ./infrastructure/services/postgres/Dockerfile
     env_file:
-      - infrastructure/.env
+      - .env
     environment:
       - "POSTGRES_DB=${DB_DATABASE:-follow_up_db}"
       - "POSTGRES_USER=${DB_USERNAME:-follow_up_user}"
