@@ -13,11 +13,8 @@ services:
       - ./public:/var/www/html/public
       - ./storage/app/public:/var/www/html/storage/app/public
       - //var/run/docker.sock:/var/run/docker.sock
-    extra_hosts:
-      - follow-up.local:127.0.0.1
     ports:
       - ${NGINX_PORT_EXPORT:-80}:80
-      - 443:443
     depends_on:
       - fpm
 
